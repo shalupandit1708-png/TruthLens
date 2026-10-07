@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TruthLens | History</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        nav {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            margin-left: 22px;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .history-card {
+            background: white;
+            padding: 24px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .prediction {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .confidence {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .news {
+            margin: 15px 0;
+            line-height: 1.6;
+            color: #475569;
+        }
+
+        .date {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .empty {
+            background: white;
+            padding: 40px;
+            border-radius: 14px;
+            text-align: center;
+            color: #64748b;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                height: auto;
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+
+            .top-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            TruthLens
+        </div>
+
+        <div>
+            <a href="/">Home</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/about">About</a>
+            <a href="/history">History</a>
+            <a href="/performance">Performance</a>
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <h1>Detection History</h1>
+
+        <p class="subtitle">
+            Previous news analysis performed by TruthLens.
+        </p>
+        <form action="/clear-history" method="POST"
+      onsubmit="return confirm('Are you sure you want to clear all history?');"
+      style="margin-bottom: 25px;">
+
+    <button type="submit"
+            style="
+                background: #dc2626;
+                color: white;
+                border: none;
+                padding: 11px 18px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: bold;
+            ">
+        Clear History
+    </button>
+
+</form>
+
+
+        {% if records %}
+
+            {% for record in records %}
+
+            <div class="history-card">
+
+                <div class="top-row">
+
+                    <div class="prediction">
+                        {{ record[2] }}
+                    </div>
+
+                    <div class="confidence">
+                        Confidence: {{ record[3] }}%
+                    </div>
+
+                </div>
+
+                <div class="news">
+                    {{ record[1] }}
+                </div>
+
+                <div class="date">
+                    Analyzed on: {{ record[4] }}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty">
+                No detection history yet.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

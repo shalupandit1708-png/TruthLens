@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Performance - TruthLens</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7f8fa;
+            color: #222;
+        }
+
+        nav {
+            background: #111827;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1100px;
+            margin: 50px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .heading h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .accuracy-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .accuracy-card h2 {
+            color: #555;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .accuracy {
+            font-size: 48px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .accuracy-card p {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .metric-card h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric span:last-child {
+            font-weight: bold;
+        }
+
+        .info {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .info h2 {
+            margin-bottom: 15px;
+        }
+
+        .info p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .limitation {
+            border-left: 5px solid #111827;
+            background: #f1f3f5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">TruthLens</div>
+
+        <div>
+            <a href="/">Home</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/performance">Performance</a>
+            <a href="/about">About</a>
+            <a href="/history">History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="heading">
+            <h1>Model Performance</h1>
+            <p>Performance of the machine-learning model used by TruthLens</p>
+        </div>
+
+        <!-- Accuracy -->
+
+        <div class="accuracy-card">
+            <h2>Overall Accuracy</h2>
+
+            <div class="accuracy">
+                98.66%
+            </div>
+
+            <p>
+                Accuracy obtained on the test dataset after removing duplicate records.
+            </p>
+        </div>
+
+
+        <!-- Classification Metrics -->
+
+        <div class="metrics">
+
+            <div class="metric-card">
+
+                <h2>Fake News</h2>
+
+                <div class="metric">
+                    <span>Precision</span>
+                    <span>0.99</span>
+                </div>
+
+                <div class="metric">
+                    <span>Recall</span>
+                    <span>0.99</span>
+                </div>
+
+                <div class="metric">
+                    <span>F1 Score</span>
+                    <span>0.99</span>
+                </div>
+
+                <div class="metric">
+                    <span>Test Samples</span>
+                    <span>4696</span>
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <h2>Real News</h2>
+
+                <div class="metric">
+                    <span>Precision</span>
+                    <span>0.98</span>
+                </div>
+
+                <div class="metric">
+                    <span>Recall</span>
+                    <span>0.99</span>
+                </div>
+
+                <div class="metric">
+                    <span>F1 Score</span>
+                    <span>0.99</span>
+                </div>
+
+                <div class="metric">
+                    <span>Test Samples</span>
+                    <span>4242</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Model Information -->
+
+        <div class="info">
+
+            <h2>Model Information</h2>
+
+            <p>
+                <strong>Dataset:</strong>
+                Fake.csv and True.csv
+            </p>
+
+            <p>
+                <strong>Feature Extraction:</strong>
+                TF-IDF (Term Frequency-Inverse Document Frequency)
+            </p>
+
+            <p>
+                <strong>Classification Algorithm:</strong>
+                Logistic Regression
+            </p>
+
+            <p>
+                <strong>Input:</strong>
+                News headline and article text
+            </p>
+
+            <p>
+                <strong>Test Dataset:</strong>
+                8,938 articles
+            </p>
+
+        </div>
+
+
+        <!-- Limitation -->
+
+        <div class="info limitation">
+
+            <h2>Important Limitation</h2>
+
+            <p>
+                TruthLens is a machine-learning-based fake-news classification
+                system. It identifies patterns learned from its training dataset.
+            </p>
+
+            <p>
+                The prediction is not an independent verification of whether
+                a claim is factually true or false.
+            </p>
+
+            <p>
+                Therefore, the confidence score should be interpreted as the
+                model's classification confidence, not as a percentage of
+                factual truth.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        © 2026 TruthLens | Academic Fake News Detection Project
+    </footer>
+
+</body>
+</html>

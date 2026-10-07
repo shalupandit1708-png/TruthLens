@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TruthLens | About</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        nav {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            margin-left: 22px;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 60px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .heading h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .heading p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tech {
+            background: #f8fafc;
+            padding: 18px;
+            border-radius: 10px;
+        }
+
+        .tech strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .tech span {
+            color: #64748b;
+        }
+
+        footer {
+            text-align: center;
+            background: #172033;
+            color: white;
+            padding: 30px;
+            margin-top: 70px;
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 12px;
+            }
+
+            .heading h1 {
+                font-size: 32px;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+        TruthLens
+    </div>
+
+    <div>
+
+        <a href="/">Home</a>
+
+        <a href="/how-it-works">
+            How It Works
+        </a>
+
+        <a href="/history">
+            History
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>
+            About TruthLens
+        </h1>
+
+        <p>
+            A machine-learning based fake-news
+            classification project.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            About the Project
+        </h2>
+
+        <p>
+
+            TruthLens is an academic project designed
+            to demonstrate how Natural Language
+            Processing and Machine Learning can be
+            applied to the classification of news
+            articles.
+
+            The system analyzes the text entered by
+            the user and generates a machine-learning
+            prediction indicating whether the article
+            is likely to be real or potentially fake.
+
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Project Objective
+        </h2>
+
+        <p>
+
+            The main objective of TruthLens is to
+            develop a simple web-based system that
+            demonstrates the use of machine learning
+            for fake-news classification and provides
+            users with an easy interface for testing
+            news text.
+
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Technologies Used
+        </h2>
+
+        <div class="tech-grid">
+
+            <div class="tech">
+                <strong>Python</strong>
+                <span>Programming language</span>
+            </div>
+
+            <div class="tech">
+                <strong>Flask</strong>
+                <span>Web backend framework</span>
+            </div>
+
+            <div class="tech">
+                <strong>Pandas</strong>
+                <span>Dataset processing</span>
+            </div>
+
+            <div class="tech">
+                <strong>Scikit-learn</strong>
+                <span>Machine learning</span>
+            </div>
+
+            <div class="tech">
+                <strong>TF-IDF</strong>
+                <span>Text feature extraction</span>
+            </div>
+
+            <div class="tech">
+                <strong>Logistic Regression</strong>
+                <span>Classification algorithm</span>
+            </div>
+
+            <div class="tech">
+                <strong>SQLite</strong>
+                <span>Detection history</span>
+            </div>
+
+            <div class="tech">
+                <strong>HTML & CSS</strong>
+                <span>Website interface</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Model Information
+        </h2>
+
+        <p>
+
+            <strong>Algorithm:</strong>
+            Logistic Regression
+
+            <br><br>
+
+            <strong>Feature Extraction:</strong>
+            TF-IDF
+
+            <br><br>
+
+            <strong>Classification:</strong>
+            Fake / Real
+
+            <br><br>
+
+            <strong>Test Accuracy:</strong>
+            Approximately 98% on the current test split.
+
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Important Limitation
+        </h2>
+
+        <p>
+
+            TruthLens provides a machine-learning
+            classification based on patterns learned
+            from its training dataset. It is not a
+            replacement for professional fact-checking
+            or verification from reliable sources.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 TruthLens | NTCC Project
+
+</footer>
+
+
+</body>
+
+</html>

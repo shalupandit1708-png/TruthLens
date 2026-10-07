@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+
+history.db
+
+.env
+
+external_test/
+
+old_files/

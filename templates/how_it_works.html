@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TruthLens | How It Works</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        nav {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            margin-left: 22px;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 60px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .heading h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .heading p {
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .number {
+            min-width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .step h2 {
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .technology {
+            margin-top: 50px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .technology h2 {
+            margin-bottom: 20px;
+        }
+
+        .technology ul {
+            padding-left: 20px;
+            line-height: 2;
+            color: #475569;
+        }
+
+        footer {
+            text-align: center;
+            background: #172033;
+            color: white;
+            padding: 30px;
+            margin-top: 70px;
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 12px;
+            }
+
+            .heading h1 {
+                font-size: 32px;
+            }
+
+            .step {
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+        TruthLens
+    </div>
+
+    <div>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/history">
+            History
+        </a>
+
+        <a href="/how-it-works">
+            How It Works
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>
+            How TruthLens Works
+        </h1>
+
+        <p>
+            TruthLens uses Natural Language Processing
+            and Machine Learning to classify news text.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="number">
+            01
+        </div>
+
+        <div>
+
+            <h2>
+                Enter News
+            </h2>
+
+            <p>
+                The user enters or pastes a news article
+                into the TruthLens detection box.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="number">
+            02
+        </div>
+
+        <div>
+
+            <h2>
+                Text Processing
+            </h2>
+
+            <p>
+                The news text is processed so that it can
+                be analyzed by the machine-learning system.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="number">
+            03
+        </div>
+
+        <div>
+
+            <h2>
+                TF-IDF Feature Extraction
+            </h2>
+
+            <p>
+                TF-IDF converts the words in the article
+                into numerical features that the machine
+                learning model can understand.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="number">
+            04
+        </div>
+
+        <div>
+
+            <h2>
+                Machine Learning
+            </h2>
+
+            <p>
+                A Logistic Regression classifier trained
+                on labelled fake and real news examples
+                analyzes the extracted features.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="number">
+            05
+        </div>
+
+        <div>
+
+            <h2>
+                Prediction
+            </h2>
+
+            <p>
+                The model produces a classification such
+                as "Likely Real" or "Possibly Fake" along
+                with its model confidence.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="number">
+            06
+        </div>
+
+        <div>
+
+            <h2>
+                Save to History
+            </h2>
+
+            <p>
+                The result is stored in a local SQLite
+                database so previous analyses can be
+                viewed later.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="technology">
+
+        <h2>
+            Technologies Used
+        </h2>
+
+        <ul>
+
+            <li>Python</li>
+
+            <li>Flask</li>
+
+            <li>Pandas</li>
+
+            <li>Scikit-learn</li>
+
+            <li>TF-IDF</li>
+
+            <li>Logistic Regression</li>
+
+            <li>SQLite</li>
+
+            <li>HTML & CSS</li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 TruthLens | NTCC Project
+
+</footer>
+
+
+</body>
+
+</html>

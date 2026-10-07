@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TruthLens | Fake News Detection</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 72px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 700;
+            color: #2563eb;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #475569;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .confidence-note {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            text-align: center;
+            padding: 85px 20px 55px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: auto;
+            color: #64748b;
+            font-size: 18px;
+        }
+
+
+        /* ================= DETECTOR ================= */
+
+        .detector {
+            width: 90%;
+            max-width: 850px;
+            margin: 15px auto 65px;
+            background: white;
+            padding: 38px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.07);
+        }
+
+        .detector-header {
+            margin-bottom: 22px;
+        }
+
+        .detector h2 {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .detector-description {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+
+        /* ================= INPUTS ================= */
+
+        .input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 7px;
+        }
+
+        .title-input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dbe1ea;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            color: #172033;
+            outline: none;
+            margin-bottom: 18px;
+            transition: 0.2s;
+        }
+
+        .title-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .title-input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 210px;
+            padding: 17px;
+            border: 1px solid #dbe1ea;
+            border-radius: 12px;
+            resize: vertical;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            color: #172033;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .check-button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .check-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+
+        /* ================= RESULT ================= */
+
+        .result {
+            margin-top: 25px;
+            padding: 28px;
+            border-radius: 14px;
+            text-align: center;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .result-title {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .prediction {
+            font-size: 27px;
+            font-weight: 700;
+            color: #172033;
+        }
+
+        .prediction.true {
+            color: #15803d;
+        }
+
+        .prediction.false {
+            color: #dc2626;
+        }
+
+        .prediction.error {
+            color: #d97706;
+        }
+
+        .result-icon {
+            width: 48px;
+            height: 48px;
+            margin: 5px auto 12px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .icon-true {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .icon-false {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .icon-error {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .result-message {
+            margin-top: 8px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+
+        /* ================= CONFIDENCE ================= */
+
+        .confidence {
+            margin-top: 18px;
+            color: #475569;
+            font-size: 15px;
+        }
+
+        .confidence strong {
+            color: #2563eb;
+        }
+
+        .confidence-bar {
+            width: 100%;
+            max-width: 400px;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 10px auto 15px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: #2563eb;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+
+        /* ================= WARNING ================= */
+
+        .warning {
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+
+        /* ================= FEATURES ================= */
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-heading h2 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .section-heading p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .features {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto 65px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 28px 24px;
+            border-radius: 15px;
+            border: 1px solid #e5e7eb;
+            transition: 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+        }
+
+        .feature-number {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+
+        /* ================= INFORMATION ================= */
+
+        .information {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto 70px;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .information h2 {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .information p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #172033;
+            color: white;
+            text-align: center;
+            padding: 28px;
+            font-size: 13px;
+        }
+
+        footer span {
+            color: #60a5fa;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 800px) {
+
+            nav {
+                height: auto;
+                padding: 18px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 14px;
+            }
+
+            .hero {
+                padding: 60px 20px 40px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .detector {
+                padding: 25px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .information {
+                padding: 25px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+        TruthLens
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="#detector">Detect</a>
+
+        <a href="/how-it-works">How It Works</a>
+
+        <a href="/about">About</a>
+
+        <a href="/history">History</a>
+
+        <a href="/performance">Performance</a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-badge">
+        MACHINE LEARNING • NLP • NEWS ANALYSIS
+    </div>
+
+    <h1>
+        Detect Fake News with
+        <span>TruthLens</span>
+    </h1>
+
+    <p>
+        Analyze news articles using Natural Language Processing
+        and Machine Learning trained on real and fake news datasets.
+    </p>
+
+</section>
+
+
+<!-- ================= DETECTOR ================= -->
+
+<section class="detector" id="detector">
+
+    <div class="detector-header">
+
+        <h2>News Detector</h2>
+
+        <p class="detector-description">
+            Enter a news headline and article below.
+            TruthLens will analyze the content using its trained
+            machine-learning model.
+        </p>
+
+    </div>
+
+
+    <form method="POST">
+
+
+        <!-- ================= TITLE ================= -->
+
+        <label class="input-label">
+            News Headline
+        </label>
+
+        <input
+            class="title-input"
+            type="text"
+            name="title"
+            placeholder="Enter the news headline..."
+        >
+
+
+        <!-- ================= ARTICLE ================= -->
+
+        <label class="input-label">
+            News Article
+        </label>
+
+        <textarea
+            name="news"
+            placeholder="Paste the news article here, or enter a news URL..."
+            required></textarea>
+
+
+        <button class="check-button" type="submit">
+            🔍 Analyze News
+        </button>
+
+    </form>
+
+
+    {% if prediction %}
+
+    <div class="result">
+
+        <div class="result-title">
+            MACHINE LEARNING RESULT
+        </div>
+
+
+        <!-- ================= LIKELY REAL ================= -->
+
+        {% if prediction == "LIKELY REAL" %}
+
+            <div class="result-icon icon-true">
+                ✓
+            </div>
+
+            <div class="prediction true">
+                LIKELY REAL
+            </div>
+
+            <p class="result-message">
+                The machine-learning model classified this
+                news content as likely real based on patterns
+                learned from the training dataset.
+            </p>
+
+
+        <!-- ================= POSSIBLY FAKE ================= -->
+
+        {% elif prediction == "POSSIBLY FAKE" %}
+
+            <div class="result-icon icon-false">
+                !
+            </div>
+
+            <div class="prediction false">
+                POSSIBLY FAKE
+            </div>
+
+            <p class="result-message">
+                The machine-learning model classified this
+                news content as possibly fake based on patterns
+                learned from the training dataset.
+            </p>
+
+
+        <!-- ================= ERROR ================= -->
+
+        {% else %}
+
+            <div class="result-icon icon-error">
+                ?
+            </div>
+
+            <div class="prediction error">
+                {{ prediction }}
+            </div>
+
+            <p class="result-message">
+                TruthLens could not complete the analysis.
+            </p>
+
+        {% endif %}
+
+
+        <!-- ================= CONFIDENCE ================= -->
+
+        {% if confidence > 0 %}
+
+        <div class="confidence">
+
+            Model Confidence:
+            <strong>{{ confidence }}%</strong>
+
+            <p class="confidence-note">
+                This confidence score represents the model's classification confidence.
+                It does not mean that the news has been verified as factually true or false.
+            </p>
+
+        </div>
+
+        <div class="confidence-bar">
+
+            <div
+                class="confidence-fill"
+                style="width: {{ confidence }}%;">
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ================= WARNING ================= -->
+
+        <p class="warning">
+
+            ⚠️ This result is an ML-based classification, not a
+            guarantee that the information is factually true or false.
+            The model learns patterns from its training dataset.
+
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<div class="section-heading">
+
+    <h2>How TruthLens Works</h2>
+
+    <p>
+        News classification using Natural Language Processing
+        and Machine Learning.
+    </p>
+
+</div>
+
+
+<section class="features">
+
+
+    <div class="feature-card">
+
+        <div class="feature-number">
+            01
+        </div>
+
+        <h3>News Dataset</h3>
+
+        <p>
+            The model is trained using the Fake.csv and True.csv
+            datasets containing examples of fake and real news.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-number">
+            02
+        </div>
+
+        <h3>TF-IDF</h3>
+
+        <p>
+            News text is converted into numerical features
+            using Term Frequency-Inverse Document Frequency.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-number">
+            03
+        </div>
+
+        <h3>Logistic Regression</h3>
+
+        <p>
+            The trained classification model analyzes the
+            text and predicts whether it is likely real or fake.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= INFORMATION ================= -->
+
+<section class="information">
+
+    <h2>About TruthLens</h2>
+
+    <p>
+
+        TruthLens is an academic fake-news detection project
+        that demonstrates how Natural Language Processing
+        and Machine Learning can be used to classify news content.
+
+        The system is trained using the Fake.csv and True.csv
+        datasets. It uses TF-IDF for text feature extraction
+        and Logistic Regression for classification.
+
+        Users can provide a news headline and article, and
+        TruthLens analyzes the content using patterns learned
+        during model training.
+
+        The prediction should be treated as an ML-based
+        classification rather than a guaranteed factual verdict.
+
+    </p>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 <span>TruthLens</span> | NTCC Project
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
